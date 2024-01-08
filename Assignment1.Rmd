@@ -1,0 +1,28 @@
+---
+title: "Assignment 1"
+author: "Ben Siegelman"
+date: '`r Sys.Date()`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+## Here's where I leave and some places I frequent within walking distance
+
+```{r map, results=TRUE}
+library(leaflet)
+library(htmltools)
+library(dplyr)
+
+points <- data.frame(
+  lat = c(-1.26127, -1.26353, -1.25856, -1.2519, -1.2557, -1.25154), 
+  lng = c(36.80463, 36.80345, 36.80596, 36.8075, 36.8039, 36.79381),
+  popup = c("Apartment", "Fruit/Vegetable Market", "Good Indian Food", "Hiking Forest", "Wife's Office", "Barber Shop")
+)
+
+leaflet(points) %>% 
+  addTiles() %>%
+  addMarkers(~lng, ~lat, popup = ~popup)
+```
